@@ -1,0 +1,184 @@
+# depslib dependency file v1.0
+1321755966 source:d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1321095611 d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.h
+	<stdio.h>
+
+1321095595 source:d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095596 source:e:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 e:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.h
+	<stdio.h>
+
+1323868334 source:e:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+	<time.h>
+
+1322059466 e:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\aide.h
+
+1322059686 source:e:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1321095596 source:c:\users\benjamin\desktop\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 c:\users\benjamin\desktop\attrape_sous\conio.h
+	<stdio.h>
+
+1322059686 source:c:\users\benjamin\desktop\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1322765392 source:c:\users\benjamin\desktop\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+
+1322059466 c:\users\benjamin\desktop\attrape_sous\aide.h
+
+1321095596 source:d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\new\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\new\attrape_sous\conio.h
+	<stdio.h>
+
+1322059686 source:d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\new\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1322770053 source:d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\new\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+
+1322059466 d:\users\john\desktop\efrei\l1\projets\c\projet_programmation_c\projet_2\new\attrape_sous\aide.h
+
+1321095596 source:c:\users\benjamin\desktop\attrape_sous1\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 c:\users\benjamin\desktop\attrape_sous1\attrape_sous\conio.h
+	<stdio.h>
+
+1322059686 source:c:\users\benjamin\desktop\attrape_sous1\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1322776882 source:c:\users\benjamin\desktop\attrape_sous1\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+
+1322059466 c:\users\benjamin\desktop\attrape_sous1\attrape_sous\aide.h
+
+1321095596 source:j:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 j:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\conio.h
+	<stdio.h>
+
+1322059686 source:j:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1323881106 source:j:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+	<time.h>
+
+1322059466 j:\efrei\projets\c\projet_programmation_c\projet_2\attrape_sous\aide.h
+
+1321095596 source:e:\attrape_sous\attrape_sous\conio.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<windows.h>
+	<string.h>
+	"conio.h"
+
+1321095612 e:\attrape_sous\attrape_sous\conio.h
+	<stdio.h>
+
+1322059686 source:e:\attrape_sous\attrape_sous\aide.cpp
+	<iostream>
+	<stdlib.h>
+	<stdio.h>
+	"conio.h"
+
+1323357748 source:e:\attrape_sous\attrape_sous\main.cpp
+	<iostream>
+	"conio.h"
+	<stdlib.h>
+	<stdio.h>
+	"aide.h"
+	<string.h>
+	<time.h>
+
+1322059466 e:\attrape_sous\attrape_sous\aide.h
+

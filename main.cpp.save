@@ -1,0 +1,529 @@
+#include <iostream>
+#include "conio.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "aide.h"
+#include <string.h>
+using namespace std;
+
+void separeTab(int n)
+{
+    int cpt;
+
+    for (cpt = 0; cpt < n; cpt++)
+    {
+        printf("+---");
+    }
+    puts("+");
+    return;
+}
+
+void colorTab(int tab[8][8], int x, int y)
+{
+    char pion = 'O';
+    printf("|");
+    if(tab[x][y] == 'J')
+    {
+        textcolor(YELLOW);
+        printf("%2c ", pion);
+    }
+    else if(tab[x][y] == 'R')
+    {
+        textcolor(LIGHTRED);
+        printf("%2c ", pion);
+    }
+    else if(tab[x][y] == 'N')
+    {
+        textcolor(BLACK);
+        printf("%2c ", pion);
+    }
+    else if(tab[x][y] == 0)
+    {
+        textcolor(DARKGRAY);
+        printf("%2c ", pion);
+    }
+    else if((tab[x][y] >= 'A' && tab[x][y] <= 'H') || (tab[x][y] >= '0' && tab[x][y] <= '7'))
+    {
+        textcolor(LIGHTGREEN);
+        printf("%2c ", tab[x][y]);
+    }
+    // printf("%2c ", tab[x][y]);
+    // printf("%2c ", pion);
+    textcolor(BLACK);
+    return;
+}
+
+void afficheTab(int tab[8][8], int taille_x, int taille_y, int ligne, int colonne)
+{
+    int x, y;
+
+    gotoxy(ligne, colonne);
+
+    for (y = 0; y < taille_y; y++)
+    {
+        gotoxy(ligne, colonne++);
+        separeTab(taille_x);
+
+        gotoxy(ligne, colonne++);
+        for (x = 0; x < taille_x; x++)
+        {
+            // printf("|%2c ", tab[x][y]);
+            colorTab(tab, x, y);
+        }
+        puts("|");
+    }
+
+    gotoxy(ligne, colonne++);
+    separeTab(taille_x);
+    return;
+}
+
+int genereCouleur()
+{
+    int nb;
+    int couleur;
+
+    nb = rand() % 3 + 1;
+
+    if(nb == 1)
+    {
+        couleur = 'J';
+    }
+    else if(nb == 2)
+    {
+        couleur = 'R';
+    }
+    else
+    {
+        couleur = 'N';
+    }
+    return couleur;
+}
+
+void initTab(int tab[8][8], int taille)
+{
+    int R = 1, J = 1, N = 1, x, y;
+    int couleur;
+
+    for (y = 0; y < taille; y++)
+    {
+        for (x = 0; x < taille; x++)
+        {
+            do
+            {
+                couleur = genereCouleur();
+
+                if(couleur == 'J' && J <= 34)
+                {
+                    tab[x][y] = couleur;
+                    J = J + 1;
+                }
+                else if(couleur == 'R' && R <= 20)
+                {
+                    tab[x][y] = couleur;
+                    R = R + 1;
+                }
+                else if(couleur == 'N' && N <= 10)
+                {
+                    tab[x][y] = couleur;
+                    N = N + 1;
+                }
+                else
+                {
+                    tab[x][y] = 0;
+                }
+
+            } while(tab[x][y] == 0);
+        }
+    }
+    return;
+}
+
+char menu()
+{
+    char selection;
+
+    do
+    {
+        system("cls");
+
+        // AFFICHAGE DU MENU
+
+        printf("L'attrape-sous\n");
+        printf("--------------\n");
+        printf("1. Mode solo\n");
+        printf("2. Mode deux joueurs\n");
+        printf("3. Aide\n\n");
+        printf("Selection du mode : ");
+        cin >> selection;
+    } while(selection < '1' || selection > '3');
+
+    return selection;
+}
+
+void afficheScore(int J_J1, int N_J1, int R_J1, int J_J2, int N_J2, int R_J2)
+{
+    int scoreT_J1, scoreT_J2;
+    scoreT_J1 = J_J1 + R_J1 * 2 + N_J1 * 3;
+    scoreT_J2 = J_J2 + R_J2 * 2 + N_J2 * 3;
+
+    textcolor(WHITE);
+    textbackground(BLACK);
+    printf("Score\r\n");
+    gotoxy(1, 10);
+    printf("Joueur 1\r\n\nJaune : %i\r\nRouge : %i\r\nNoir : %i\r\nTotal : %i\r\n\n", J_J1, R_J1, N_J1, scoreT_J1);
+    gotoxy(1, 20);
+    printf("Joueur 2\r\n\nJaune : %i\r\nRouge : %i\r\nNoir : %i\r\nTotal : %i\r\n\n", J_J2, R_J2, N_J2, scoreT_J2);
+    textcolor(BLACK);
+    textbackground(DARKGRAY);
+}
+
+void afficheSelection(int numJoueur, char texte[1000], char texte2[1000], int J, int R, int N)
+{
+    int pointT;
+    pointT = J + R * 2 + N * 3;
+
+    textbackground(BLACK);
+    textcolor(WHITE);
+
+    gotoxy(55, 8);
+    printf("Joueur %i :\r\n\n", numJoueur);
+    gotoxy(55, 10);
+    printf("%s\r\n\n", texte);
+    gotoxy(55, 11);
+    printf("%s\r\n\n", texte2);
+    gotoxy(55, 16);
+    printf("Ligne : \t Colonne : \r\n");
+
+    gotoxy(55, 20);
+    if(pointT <= 1)
+    {
+        printf("Point restant : %i\r\n", pointT);
+    }
+    else
+    {
+        printf("Points restants : %i\r\n", pointT);
+    }
+    gotoxy(55, 22);
+    printf("Pions restants :\r\n");
+    gotoxy(55, 23);
+    printf("%i Jaunes\r\n", J);
+    gotoxy(55, 24);
+    printf("%i Rouges\r\n", R);
+    gotoxy(55, 25);
+    printf("%i Noirs\r\n", N);
+
+    textcolor(BLACK);
+    textbackground(DARKGRAY);
+}
+
+void afficheTabFinal(int plateau[8][8], int taille, int tour, int num_J, int J_J1, int N_J1, int R_J1, int J_J2, int N_J2, int R_J2, char texte[1000], char texte2[1000])
+{
+    system("cls");
+    textbackground(BLACK);
+    textcolor(WHITE);
+    gotoxy(33, 4);
+    printf("Tour : %i\r\n", tour);
+
+    textcolor(BLACK);
+    textbackground(DARKGRAY);
+    // Gestion des coordonnees
+    int coordonnees_x[8][8] = {{'0'}, {'1'}, {'2'}, {'3'}, {'4'}, {'5'}, {'6'}, {'7'}};     // Repérage des colonnes du plateau
+    int coordonnees_y[8][8] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};                     // Repérage des lignes du plateau
+
+    gotoxy(1, 6);
+    afficheScore(J_J1, N_J1, R_J1, J_J2, N_J2, R_J2);
+
+    afficheTab(coordonnees_x, taille, 1, 20, 6);
+    afficheTab(coordonnees_y, 1, taille, 14, 10);
+    afficheTab(plateau, taille, taille, 20, 10);
+
+    afficheSelection(num_J, texte, texte2, 2, 3, 4);
+
+    textbackground(BLACK);
+    textcolor(WHITE);
+}
+
+int convert_coordonnees(char x)
+{
+    int x_converted;
+
+    if(x == 'A')
+    {
+        x_converted = 0;
+    }
+    else if(x == 'B')
+    {
+        x_converted = 1;
+    }
+    else if(x == 'C')
+    {
+        x_converted = 2;
+    }
+    else if(x == 'D')
+    {
+        x_converted = 3;
+    }
+    else if(x == 'E')
+    {
+        x_converted = 4;
+    }
+    else if(x == 'F')
+    {
+        x_converted = 5;
+    }
+    else if(x == 'G')
+    {
+        x_converted = 6;
+    }
+    else if(x  == 'H')
+    {
+        x_converted = 7;
+    }
+    else if(x == '0')
+    {
+        x_converted = 0;
+    }
+    else if(x == '1')
+    {
+        x_converted = 1;
+    }
+    else if(x == '2')
+    {
+        x_converted = 2;
+    }
+    else if(x == '3')
+    {
+        x_converted = 3;
+    }
+    else if(x == '4')
+    {
+        x_converted = 4;
+    }
+    else if(x == '5')
+    {
+        x_converted = 5;
+    }
+    else if(x == '6')
+    {
+        x_converted = 6;
+    }
+    else if(x == '7')
+    {
+        x_converted = 7;
+    }
+    else
+    {
+        x_converted = -1;
+    }
+    return x_converted;
+}
+
+int verif_coordonnees(int plateau[8][8], int lig, int col)
+{
+    int erreur = 0;
+
+    if(lig != -1 && col != -1)
+    {
+        if(plateau[col][lig] == 'J')
+        {
+            erreur = 1;
+        }
+    }
+
+    return erreur;
+}
+
+int SelectionCol()
+{
+    int col = -1;
+    char col_t;
+
+    do
+    {
+        gotoxy(76, 16);
+        scanf("%s[0-7]", &col_t);
+        if((int)col_t >= '0' && (int)col_t <= '7')
+        {
+            col = convert_coordonnees(col_t);
+        }
+    } while(col == -1);
+    return col;
+}
+
+int SelectionLig()
+{
+    int lig = -1;
+    char lig_t;
+
+    do
+    {
+        gotoxy(63, 16);
+        scanf("%s[A-H]", &lig_t);
+        if((int)lig_t >= 'A' && (int)lig_t <= 'H')
+        {
+            lig = convert_coordonnees(lig_t);
+        }
+    } while(lig == -1);
+    return lig;
+}
+
+int main()
+{
+    char select_menu;
+    int return_menu = 0;
+
+    do
+    {
+        select_menu = menu();
+
+        if(select_menu == '1')
+        {
+        }
+        else if(select_menu == '2')
+        {
+            system("cls");
+
+            // Définition des variables
+
+            int plateau[8][8] = {0};
+            int taille = 8;
+            int tour = 0;
+            char texte[1000] = {NULL};
+            char texte2[1000] = {NULL};
+            int J_J1 = 0, N_J1 = 0, R_J1 = 0, J_J2 = 0, N_J2 = 0, R_J2 = 0;
+            int num_J = 1;
+            int lig, col;
+            int verif_coor = 0;
+
+
+            initTab(plateau, taille);                                      // Initialisation du plateau de jeu
+
+            while(tour == 0)
+            {
+                strcpy(texte, "Veuillez selectionner");
+                strcpy(texte2, "un pion jaune a retirer");
+
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);  // Affichage du plateau de jeu
+
+                // Joueur 1
+                num_J = 1;
+
+                do
+                {
+                    lig = SelectionLig();
+                    col = SelectionCol();
+
+                    verif_coor = verif_coordonnees(plateau, lig, col);
+                } while(verif_coor == 0);
+
+                plateau[col][lig] = 0;
+
+                // FIN DU TOUR DE J1
+
+
+                // Joueur 2
+                num_J = 2;
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);
+
+                do
+                {
+                    lig = SelectionLig();
+                    col = SelectionCol();
+
+                    verif_coor = verif_coordonnees(plateau, lig, col);
+                } while(verif_coor == 0);
+
+                plateau[col][lig] = 0;
+
+               // FIN DU TOUR DE J2
+
+                tour = tour + 1;
+
+            }
+
+            while(tour > 0 )
+            {
+                // DEPLACEMENT DU PION JAUNE DEBUT
+
+                num_J = 1;
+
+                strcpy(texte, "Veuillez selectionner");
+                strcpy(texte2, "un pion jaune a deplacer");
+
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);  // Affichage du plateau de jeu
+
+                do
+                {
+                    lig = SelectionLig();
+                    col = SelectionCol();
+
+                    verif_coor = verif_coordonnees(plateau, lig, col);
+                } while(verif_coor == 0);
+
+                /* Ajouter ici les coordonnées de ce pion */
+
+                // FIN DU SELECTION DU DEPLACEMENT DE J1
+
+                /* Déplacement du pion de J1*/
+
+                 // DEPLACEMENT DU PION JAUNE DEBUT
+
+                num_J = 2;
+
+                strcpy(texte, "Veuillez selectionner");
+                strcpy(texte2, "un pion jaune a deplacer");
+
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);  // Affichage du plateau de jeu
+
+                do
+                {
+                    lig = SelectionLig();
+                    col = SelectionCol();
+
+                    verif_coor = verif_coordonnees(plateau, lig, col);
+                } while(verif_coor == 0);
+
+                /* Ajouter ici les coordonnées de ce pion */
+
+                // FIN DU SELECTION DU DEPLACEMENT DE J1
+
+                /* Déplacement du pion de J1*/
+
+
+                // Joueur 2
+                num_J = 2;
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);
+
+                do
+                {
+                    lig = SelectionLig();
+                    col = SelectionCol();
+
+                    verif_coor = verif_coordonnees(plateau, lig, col);
+                } while(verif_coor == 0);
+
+                
+
+               // FIN DU TOUR DE J2
+
+
+                afficheTabFinal(plateau, taille, tour, num_J, J_J1, N_J1, R_J1, J_J2, N_J2, R_J2, texte, texte2);
+            }
+
+            gotoxy(60, 10);
+            cin >> select_menu;
+        }
+        else if(select_menu == '3')
+        {
+            system("cls");
+
+            aide();
+
+            system("pause");
+            return_menu = 1;
+        }
+    } while(return_menu == 1);
+
+    return 0;
+}
